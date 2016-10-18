@@ -1,12 +1,9 @@
 # Customized Log Rotation
 A customized log rotation script.
-All files with a pre defined date, 30 days ago per default, will be joined in a single compressed file 
+All files with a pre defined date, 60 days ago per default, will be joined in a single compressed file 
 and removed from directory.
 
 Will be util when your system storage is full and you not have any log system rotation configurated.
-
-
-A folder called oldfiles has some files that you can sue to test the script.
 
 
 
@@ -31,6 +28,7 @@ Enjoy and have fun!
 
 
 TODO
-insert customized path to compress files
-help screens
+- insert customized path to compress files
+- help screens
+- option to insert old dates different from 60 days ago
 
