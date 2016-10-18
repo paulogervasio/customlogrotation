@@ -25,7 +25,8 @@ default_tar_file_name="compressed_logs_"`date  +%Y-%m-%d`".tar";
 count_rm_file=0;
 c=0;
 splitSeparator="|";
-wasFoundOldFile = false;
+
+wasFoundOldFile=false;
 
 
 while [[ $c != ${#array_all_files[*]} ]]; do
@@ -63,7 +64,7 @@ while [[ $c != ${#array_all_files[*]} ]]; do
 		echo "le"
 		echo $(date -d $date_expired_files +%s)
 		echo ""
-		wasFoundOldFile = true;
+		wasFoundOldFile=true;
 
 		array_files_to_remove[$count_rm_file]=$file_name;
 		(( count_rm_file++ ));     
@@ -72,29 +73,43 @@ while [[ $c != ${#array_all_files[*]} ]]; do
         (( c++ ))
 done
 
-if [[ wasFoundOldFile -eq true ]]
+echo ${#array_files_to_remove[*]};
+echo $array_files_to_remove;
+
+echo $wasFoundOldFile;
+if [[ $wasFoundOldFile -eq true ]]
 then
 
 	echo "files picked, wait for compression...";
-
-
 	echo ""
-	echo ""
+	
 	echo "reporting files compacted and removed:"
-	c=0;
-
 	echo "the output filename is: " $default_tar_file_name;
 
- 
-	while [[ $c != ${#array_files_to_remove[*]} ]]; do
-	    #echo ${array_all_files[$c]};
-	    tar zcvf $default_tar_file_name ${array_all_files[$c]}
-	    rm -i ${array_all_files[$c]};
-	    (( c++ ))
+
+	for file in $array_files_to_remove
+	do
+		echo "from loop " $OUTPUT;
+		tar zcvf $default_tar_file_name $file;
+		rm -i $file;
+
 	done
+
+# 	c=0;
+#	while [[ $c != ${#array_files_to_remove[*]} ]]; do
+#		
+#		file=${array_all_files[$c]};
+#	    
+#		tar zcvf $default_tar_file_name $file;
+#		rm -i $file;
+#		(( c++ ));
+#
+#	done
+
+
 else
-	echo "Theres no files to remove"
-	exit 0
+	echo "Theres no files to remove";
+	exit 0;
 fi
 
 
