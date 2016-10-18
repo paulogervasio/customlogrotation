@@ -23,9 +23,9 @@ stat file.txt
 ```
 
 After it run the command:
-
+```
 $clogrot.sh
-
+```
 This script should be placed in the same folder where the old files are allocated.
 So a file with prefix "compressed_logs_" more the prefix "%Y-%m-%d".tar" will be created
 
