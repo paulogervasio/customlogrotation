@@ -1,7 +1,7 @@
 # Customized Log Rotation
 A customized log rotation script.
-All files with a pre defined date, 60 days ago per default, will be joined in a single compressed file 
-and removed from directory.
+
+All files that not were modified, accessed since 60 days ago will be packet in a compressed file and removed from system.
 
 Will be util when your system storage is full and you not have any log system rotation configurated.
 
