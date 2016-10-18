@@ -52,20 +52,7 @@ while [[ $c != ${#array_all_files[*]} ]]; do
         if [[ $(date -d $last_modification +%s) -le $(date -d $date_expired_files +%s) || $(date -d $last_access +%s) -le $(date -d $date_expired_files +%s) ]]
         then
 
-		
-		echo $(date -d $last_modification +%s)
-		echo "le"
-		echo $(date -d $date_expired_files +%s)
-		echo ""
-
-		echo "||"
-
-		echo $(date -d $last_access +%s)
-		echo "le"
-		echo $(date -d $date_expired_files +%s)
-		echo ""
 		wasFoundOldFile=true;
-
 		array_files_to_remove[$count_rm_file]=$file_name;
 		(( count_rm_file++ ));     
 	fi
@@ -73,10 +60,6 @@ while [[ $c != ${#array_all_files[*]} ]]; do
         (( c++ ))
 done
 
-echo ${#array_files_to_remove[*]};
-echo $array_files_to_remove;
-
-echo $wasFoundOldFile;
 if [[ $wasFoundOldFile -eq true ]]
 then
 
@@ -94,18 +77,6 @@ then
 		rm -i $file;
 
 	done
-
-# 	c=0;
-#	while [[ $c != ${#array_files_to_remove[*]} ]]; do
-#		
-#		file=${array_all_files[$c]};
-#	    
-#		tar zcvf $default_tar_file_name $file;
-#		rm -i $file;
-#		(( c++ ));
-#
-#	done
-
 
 else
 	echo "Theres no files to remove";
